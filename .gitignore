@@ -1,0 +1,43 @@
+# Virtual environments
+venv/
+.venv/
+venv_*/
+env/
+__pycache__/
+*.pyc
+
+# Model weights & checkpoints (download these separately)
+*.npz
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+checkpoints/
+checkpoint*/
+
+# Data
+*.tfrecord
+data/
+datasets/
+output/
+output_*/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+*.so
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archives
+*.tar.gz
+*.zip

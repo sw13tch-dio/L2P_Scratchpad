@@ -1,0 +1,10 @@
+absl-py
+clu==0.0.6
+flax>=0.7.0,<0.14
+jax>=0.4.0
+jaxlib>=0.4.0
+ml_collections
+numpy
+optax>=0.2.0
+tensorflow-cpu>=2.10
+tensorflow-datasets>=4.3.0
