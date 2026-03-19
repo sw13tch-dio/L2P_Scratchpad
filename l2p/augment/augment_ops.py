@@ -23,7 +23,36 @@ from absl import logging
 from augment import color_util
 from libml.losses import apply_label_smoothing
 import tensorflow.compat.v2 as tf
-from tensorflow_addons import image as image_transform
+try:
+  from tensorflow_addons import image as image_transform
+except ImportError:
+  import numpy as np
+  import scipy.ndimage as ndimage
+  class _ImageTransform:
+    @staticmethod
+    def rotate(images, angle):
+      img = images[..., :3]
+      deg = -np.degrees(float(angle))
+      out = tf.numpy_function(lambda x: ndimage.rotate(x, deg, reshape=False, order=1, mode="nearest").astype(np.uint8), [img], tf.uint8)
+      out.set_shape(img.shape)
+      return tf.concat([out, tf.ones([tf.shape(images)[0], tf.shape(images)[1], 1], dtype=images.dtype)], -1)
+    @staticmethod
+    def translate(images, shift):
+      img = images[..., :3]
+      dx, dy = float(shift[0]), float(shift[1])
+      out = tf.numpy_function(lambda x: ndimage.shift(x, (dy, dx, 0), order=1, mode="nearest").astype(np.uint8), [img], tf.uint8)
+      out.set_shape(img.shape)
+      return tf.concat([out, tf.ones([tf.shape(images)[0], tf.shape(images)[1], 1], dtype=images.dtype)], -1)
+    @staticmethod
+    def transform(images, transforms):
+      img = images[..., :3]
+      t = np.array(transforms, dtype=np.float32)
+      m = np.array([[t[0],t[1],t[2]],[t[3],t[4],t[5]],[t[6],t[7],1.]])
+      inv = np.linalg.inv(m)
+      out = tf.numpy_function(lambda x: ndimage.affine_transform(x, inv[:2,:2], inv[:2,2], order=1, mode="nearest").astype(np.uint8), [img], tf.uint8)
+      out.set_shape(img.shape)
+      return tf.concat([out, tf.ones([tf.shape(images)[0], tf.shape(images)[1], 1], dtype=images.dtype)], -1)
+  image_transform = _ImageTransform()
 
 FLAGS = flags.FLAGS
 
