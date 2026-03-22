@@ -56,13 +56,15 @@ We got the original JAX L2P running on Google Colab (T4 GPU) with modern depende
 - Failed imports get cached in `sys.modules` — subsequent attempts fail even after fixes
 - **Fix**: Always restart kernel after fixing import errors, or manually clear `sys.modules`
 
-## Current State (RUNNING NOW)
+## Current State (March 22, 2026 ~1:30am)
 
 - **Platform**: Google Colab, T4 GPU (15GB VRAM), High RAM
 - **Stack**: JAX 0.7.2, Flax 0.12.5, Optax 0.2.6, Python 3.12
-- **Task 1 result**: **97.8% accuracy in 27.4 minutes** ✅
-- Currently running Task 2+
-- Expect ~3-4 hours total for all 10 tasks
+- **Task 1**: **97.8% avg_acc** in 27.4min ✅
+- **Task 2**: **95.4% avg_acc, 2.6% forgetting** in 30.8min ✅
+- Task 3+ currently running (~58min elapsed)
+- May run out of Colab compute — Dio has A100 access coming in next few days
+- If interrupted, re-run using `run_l2p_patched.py` or the two Colab cells
 
 ## Key Config Values (JAX — confirmed correct)
 
