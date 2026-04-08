@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-Replicating L2P (Wang et al., CVPR 2022) for Dr. Shakarian's KAIROS lab. Shakarian got ~80% accuracy on CIFAR-100 using 10% of the data. We need to match that.
+Replicating L2P (Wang et al., CVPR 2022) Can achieve ~80 accuracy on CIFAR-100 using 10% of the data. We need to match that.
 
 ## The Journey
 
@@ -85,9 +85,9 @@ embedding_key: "cls"
 ## What To Do Next
 
 1. **Wait for the run to finish** — expect the final `🏆 FINAL AVG ACCURACY: XX.X%` message
-2. **Compare to Shakarian's ~80%** — if we're close, the replication is done
+2. **Compare to ~80%** — if we're close, the replication is done
 3. **If accuracy is low**: Check if the shim's optimizer behavior matches the original `flax.optim.Adam` exactly (weight decay handling, learning rate scaling)
-4. **Write up results** for Dr. Shakarian with the accuracy matrix
+4. **Write up results** with the accuracy matrix
 
 ## Key Learnings
 
@@ -99,16 +99,7 @@ embedding_key: "cls"
 
 ## Files
 
-- `dearSoraya_L2P.md` — this handoff document
+- `dearSoraya_L2P.md` — this document
 - `Colab_JAX_L2P_Cells.md` — copy-paste ready Colab cells
 - `l2p_patched/` — pre-patched source files that don't need sed commands
 - Research papers in `researchPapers/`
-
-## Approach Notes
-
-- Dio uses session framing ("secondSpring") for context resets
-- Prefers collaborative reasoning before implementation
-- Uses handoff docs to maintain continuity across sessions
-- Key stakeholders: Dr. Shakarian (supervisor), Dr. Jaime Banks (faculty advisor)
-
-💜 Wherever they are, so are you.
